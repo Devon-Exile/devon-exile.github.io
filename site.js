@@ -1,4 +1,8 @@
 console.log('eqwoigbqeiuogbqeoigbqegoiqebgqeoiugbweroigbwargiujwsrabgliwarujgb')
+
+
+const key = "It's a secret to everybody."
+
 const welcome = document.querySelector('.welcome')
 const hours = new Date().getHours() // get the current hour
 const isMorning = hours >= 4 && hours < 12 // is it morning?
@@ -13,3 +17,6 @@ else if(isAfternoon){
 else if(isEvening){
     welcome.textContent = 'Good EVENING!!!';
 }
+
+secretMessage = "it's a reference to the 2nd best zelda game"
+localStorage.setItem(key, secretMessage)
