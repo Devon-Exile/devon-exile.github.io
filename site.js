@@ -66,3 +66,38 @@ const showImages = () => {
 }
 
 showImages()
+
+
+
+const addButton = document.querySelector('#todoButton')
+const addInput= document.querySelector('#new-todo')
+const todoList = document.querySelector('.todo-list')
+const todos = JSON.parse(localStorage.getItem('todo-list')) || []
+
+addButton.addEventListener('click', () => {
+
+const inputText = addInput.value
+
+if(inputText) 
+{
+    todos.push({ text: inputText, completed: false })
+    renderTodos()
+    localStorage.setItem('todo-list', JSON.stringify(todos))
+}
+    addInput.value = ''
+    console.log('potato')
+})
+
+function renderTodos() {
+    todoList.innerHTML = ''
+    todos.map(todo => {
+        const li = document.createElement('li')
+        li.textContent = todo.text
+        todoList.append(li)
+    })   
+}
+
+
+
+
+
