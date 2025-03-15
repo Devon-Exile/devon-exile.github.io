@@ -97,6 +97,7 @@ function renderTodos() {
     })   
 }
 
+renderTodos()
 const pokemonImage = document.querySelector('#pokemonImage');
 
 (async () => {
@@ -157,3 +158,5 @@ renderPokemon(imagesss)
 
 
 })()
+
+
