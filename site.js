@@ -103,58 +103,34 @@ const pokemonImage = document.querySelector('#pokemonImage');
 (async () => {
 
 
-
-/* So the way I understand this is this function is what fetches the data
-Step one: create the arrow function
-Step two: create the url variable
-Step three: fetch the data from the url
-Step four: parse the data
-Step five: return the data as an object
-*/
-
 const getRandomPokemon = async() => {
     const url = 'https://pokeapi.co/api/v2/pokemon/' + Math.floor(Math.random() * 150)
-    //is this the equivalent of response.on('data'...)?
+    
     const response = await fetch(url)
-    //is this the equivalent of response.on('end'...)?
+    
     const pokemonImages = await response.json()
-    //this is what returns the object after the JSONparse?
+    
     return pokemonImages
 }
 
-/* The way I understand this function is that is takes the object returned in the getRandomPokemon function and tells it what to populate
-Step one: Create the arrow function
-Step two: clear the innerhtml for where the image will be placed
-Step three: create the img element
-Step four: *****grabbing the image source with the api fetch*****????? I'm not exactly sure how to word that
-but the way I understand it is I'm taking the previously returned object data and taking a specific portion of it to be displayed i.e. the sprite of the pokemon
-Step five: " but for the name
-Step six: append the div with the image
-*/
 
-const renderPokemon = (pokemonImages /*return object taken as parameter?*/) => {
+
+const renderPokemon = (pokemonImages) => {
 
     pokemonImage.innerHTML = ''
 
     const img = document.createElement('img')
-    img.src = pokemonImages.sprites.front_default // url of the image from the 'front_default' property ---- I don't understand the syntax for this, again i'm really struggling with the api stuff, url/sprite?
-    //So it's my understanding that you take the object then list the properties until you get what information you want to display?
-    img.alt = pokemonImages.name// name of the pokemon ---- same thing but name/description?
+    img.src = pokemonImages.sprites.front_default
+    img.alt = pokemonImages.name
     pokemonImage.append(img)
     
-
+    //boom
 }
 
-/* I copy and pasted this from the exercise and just refilled it with the proper functions/variables etc. 
 
-Added the renderpokemon call
-*/
 
 const imagesss = await getRandomPokemon()
 renderPokemon(imagesss)
-// console.log(imagesss)
-
-/* */
 
 
 })()
