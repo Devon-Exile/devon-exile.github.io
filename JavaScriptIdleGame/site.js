@@ -24,7 +24,6 @@ function playClickSound() {
     var Currency = JSON.parse(localStorage.getItem('Money')) || 0
     var addAmountPrice = JSON.parse(localStorage.getItem('AddAmount')) || 5
     var increaseAmount = JSON.parse(localStorage.getItem('IncreaseAmount')) || 1
-    //var increaseAmount = JSON.parse(localStorage.getItem('IncreaseAutoAmount')) || 1
     var addAutoPrice = JSON.parse(localStorage.getItem('AutoPrice')) || 100
     let autoTickRunning = JSON.parse(localStorage.getItem('TickerTrue')) || false
     var shitTimer = JSON.parse(localStorage.getItem('TickTimer')) || 2000
@@ -78,12 +77,11 @@ setInterval(() => {
     console.log("Click count has been reset.")
 }, 3000)
 
-
 autoTickButt.addEventListener('click', async () => {
     playClickSound() 
     if (Currency >= addAutoPrice) {
         Currency -= addAutoPrice
-        addAutoPrice *= 10
+        addAutoPrice *= 2
         shitTimer = shitTimer / 2
         updateTickButton()
         updateMoney()
@@ -117,7 +115,6 @@ resetButton.addEventListener('click', () => {
     localStorage.clear()  
     Currency = 0
     addAmountPrice = 5
-    increaseAmount = 1
     increaseAmount = 1
     addAutoPrice = 100
     shitTimer = 2000
