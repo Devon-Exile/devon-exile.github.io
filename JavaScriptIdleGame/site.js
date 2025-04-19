@@ -8,6 +8,16 @@ const resetButton = document.querySelector('#ResetButton')
 const autoTickButt = document.querySelector('#autoTick')
 
 
+const clickSound = document.getElementById('clickSound');
+
+
+document.addEventListener('click', () => {
+    clickSound.currentTime = 0;
+    clickSound.play()
+})
+
+
+
 //Storage and Variables
     var Currency = JSON.parse(localStorage.getItem('Money')) || 0
     var addAmountPrice = JSON.parse(localStorage.getItem('AddAmount')) || 5
@@ -15,9 +25,9 @@ const autoTickButt = document.querySelector('#autoTick')
     var increaseAutoAmount = JSON.parse(localStorage.getItem('IncreaseAutoAmount')) || 1
     var addAutoPrice = JSON.parse(localStorage.getItem('AutoPrice')) || 100
     let autoTickRunning = JSON.parse(localStorage.getItem('TickerTrue')) || false
-    var shitTimer = JSON.parse(localStorage.getItem('TickTimer')) || 1000
+    var shitTimer = JSON.parse(localStorage.getItem('TickTimer')) || 2000
 
-    const maxClicksPerSecond = 10
+    const maxClicksPerSecond = 20
     let clickCount = 0
     let clickInterval
 
