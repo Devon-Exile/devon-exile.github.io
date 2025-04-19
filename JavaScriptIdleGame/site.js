@@ -122,8 +122,11 @@ resetButton.addEventListener('click', () => {
     addAutoPrice = 100
     shitTimer = 2000
     autoTickRunning = false
-    autoTicker() 
-    clearInterval(autoTickInterval)
+
+    if (typeof autoTickInterval !== 'undefined') {
+        clearInterval(autoTickInterval);
+    }
+    
     updateMoney()
     updateAddButton()
     updateTickButton()
