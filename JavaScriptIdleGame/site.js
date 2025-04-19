@@ -7,9 +7,8 @@ const currency = document.querySelector('#currency')
 const resetButton = document.querySelector('#ResetButton')
 const autoTickButt = document.querySelector('#autoTick')
 
-
+//click sound
 const clickSound = document.getElementById('clickSound');
-
 
 document.addEventListener('click', () => {
     clickSound.currentTime = 0;
@@ -18,7 +17,7 @@ document.addEventListener('click', () => {
 
 
 
-//Storage and Variables
+//Storage and Variables (will refine eventually, just lazy)
     var Currency = JSON.parse(localStorage.getItem('Money')) || 0
     var addAmountPrice = JSON.parse(localStorage.getItem('AddAmount')) || 5
     var increaseAmount = JSON.parse(localStorage.getItem('IncreaseAmount')) || 1
@@ -27,9 +26,10 @@ document.addEventListener('click', () => {
     let autoTickRunning = JSON.parse(localStorage.getItem('TickerTrue')) || false
     var shitTimer = JSON.parse(localStorage.getItem('TickTimer')) || 2000
 
-    const maxClicksPerSecond = 20
+    const maxClicksPerSecond = 100
     let clickCount = 0
-    let clickInterval
+    let isLockedOut = false;
+    const lockoutTime = 300000;
 
 //Button Clicks
 addAmountButton.addEventListener('click', () => {
@@ -48,24 +48,39 @@ addAmountButton.addEventListener('click', () => {
 })
 
 playButton.addEventListener('click', () => {
-    
-    if (clickCount < maxClicksPerSecond) {
+
+    if (isLockedOut) {
+        console.log("You are locked out! Please wait.")
+        return
+    }
+
+    clickCount++
+    console.log("Click count is: ", clickCount)
+
+
+
+    if (clickCount <= maxClicksPerSecond) {
         Currency += increaseAmount
         console.log(Currency)
         updateMoney()
         localStorage.setItem("Money", JSON.stringify(Currency))
-        clickCount++
-        if (!clickInterval) {
-            clickInterval = setInterval(() => {
-                clickCount = 0
-                clearInterval(clickInterval)
-                clickInterval = null
-            }, 1000)
-        }
     } else {
-        console.log("You are clicking too fast! Please slow down.");
+        isLockedOut = true
+        console.log("You are clicking too fast! Please wait 5 minutes.")
+
+        setTimeout(() => {
+            isLockedOut = false
+            console.log("You can click again!")
+        }, lockoutTime)
     }
 })
+
+
+setInterval(() => {
+    clickCount = 0
+    console.log("Click count has been reset.")
+}, 3000)
+
 
 autoTickButt.addEventListener('click', async () => {
     if (Currency >= addAutoPrice) {
@@ -106,7 +121,7 @@ resetButton.addEventListener('click', () => {
     increaseAmount = 1
     increaseAutoAmount = 1
     addAutoPrice = 100
-    shitTimer = 1000
+    shitTimer = 2000
     autoTickRunning = false 
     clearInterval(autoTickInterval)
     updateMoney()
