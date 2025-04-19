@@ -10,10 +10,14 @@ const autoTickButt = document.querySelector('#autoTick')
 //click sound
 const clickSound = document.getElementById('clickSound');
 
-document.addEventListener('click', () => {
-    clickSound.currentTime = 0;
+// document.addEventListener('click', () => {
+//     clickSound.currentTime = 0;
+//     clickSound.play()
+// })
+function playClickSound() {
+    clickSound.currentTime = 0
     clickSound.play()
-})
+}
 
 
 //Storage and Variables (will refine eventually, just lazy)
@@ -32,6 +36,7 @@ document.addEventListener('click', () => {
 
 //Button Clicks
 addAmountButton.addEventListener('click', () => {
+    playClickSound() 
     if (Currency >= addAmountPrice) 
        { Currency -= addAmountPrice
         increaseAmount += 1
@@ -47,6 +52,7 @@ addAmountButton.addEventListener('click', () => {
 })
 
 playButton.addEventListener('click', () => {
+    playClickSound() 
     if (isLockedOut) {
         console.log("You are locked out lol shouldn't have cheated. Please wait or refresh the page bc I really don't care if you cheated.")
         return
@@ -74,6 +80,7 @@ setInterval(() => {
 
 
 autoTickButt.addEventListener('click', async () => {
+    playClickSound() 
     if (Currency >= addAutoPrice) {
         Currency -= addAutoPrice
         addAutoPrice *= 10
@@ -106,6 +113,7 @@ const autoTicker = () => {
 }
 
 resetButton.addEventListener('click', () => {
+    playClickSound() 
     localStorage.clear()  
     Currency = 0
     addAmountPrice = 5
@@ -129,7 +137,7 @@ const updateAddButton = () =>{
     addAmountButton.innerHTML = "Increase Click Amount " + "<br> <br>" + "Cost: " + addAmountPrice.toString()
 }
 const updateTickButton = () =>{
-    autoTickButt.innerHTML = "Increase Auto-Tick Amount " + "<br> <br>" + "Cost: " + addAutoPrice.toString()
+    autoTickButt.innerHTML = "Increase Auto-Tick Speed " + "<br> <br>" + "Cost: " + addAutoPrice.toString()
 }
 
 
