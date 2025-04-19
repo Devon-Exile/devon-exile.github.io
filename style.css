@@ -1,14 +1,11 @@
 body{
-    background-color: black;   
+    background-color: white;   
     text-align: center;
+    list-style-position: inside;
+    font-size: 50px;
 }
-div#welcomeText{
-    
-    display: inline-block;
-    text-align: center;
-    color: black;
-    background-color: white;
-    border-style: double;
+#idleGame{
+    font-size: 50px;   
 }
 
 
