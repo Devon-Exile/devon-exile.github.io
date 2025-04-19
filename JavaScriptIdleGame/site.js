@@ -24,7 +24,7 @@ function playClickSound() {
     var Currency = JSON.parse(localStorage.getItem('Money')) || 0
     var addAmountPrice = JSON.parse(localStorage.getItem('AddAmount')) || 5
     var increaseAmount = JSON.parse(localStorage.getItem('IncreaseAmount')) || 1
-    var increaseAutoAmount = JSON.parse(localStorage.getItem('IncreaseAutoAmount')) || 1
+    //var increaseAmount = JSON.parse(localStorage.getItem('IncreaseAutoAmount')) || 1
     var addAutoPrice = JSON.parse(localStorage.getItem('AutoPrice')) || 100
     let autoTickRunning = JSON.parse(localStorage.getItem('TickerTrue')) || false
     var shitTimer = JSON.parse(localStorage.getItem('TickTimer')) || 2000
@@ -105,7 +105,7 @@ autoTickButt.addEventListener('click', async () => {
 
 const autoTicker = () => {
     autoTickInterval = setInterval(() => {
-        Currency += increaseAutoAmount
+        Currency += increaseAmount
         updateMoney()
         localStorage.setItem("Money", JSON.stringify(Currency))
         console.log("Auto-tick is running with timer:", shitTimer)
@@ -118,15 +118,15 @@ resetButton.addEventListener('click', () => {
     Currency = 0
     addAmountPrice = 5
     increaseAmount = 1
-    increaseAutoAmount = 1
+    increaseAmount = 1
     addAutoPrice = 100
     shitTimer = 2000
     autoTickRunning = false
 
     if (typeof autoTickInterval !== 'undefined') {
-        clearInterval(autoTickInterval);
+        clearInterval(autoTickInterval)
     }
-    
+
     updateMoney()
     updateAddButton()
     updateTickButton()
