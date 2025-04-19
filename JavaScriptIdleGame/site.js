@@ -16,7 +16,6 @@ document.addEventListener('click', () => {
 })
 
 
-
 //Storage and Variables (will refine eventually, just lazy)
     var Currency = JSON.parse(localStorage.getItem('Money')) || 0
     var addAmountPrice = JSON.parse(localStorage.getItem('AddAmount')) || 5
@@ -48,33 +47,25 @@ addAmountButton.addEventListener('click', () => {
 })
 
 playButton.addEventListener('click', () => {
-
     if (isLockedOut) {
-        console.log("You are locked out! Please wait.")
+        console.log("You are locked out lol shouldn't have cheated. Please wait or refresh the page bc I really don't care if you cheated.")
         return
     }
-
     clickCount++
     console.log("Click count is: ", clickCount)
-
-
-
     if (clickCount <= maxClicksPerSecond) {
         Currency += increaseAmount
-        console.log(Currency)
         updateMoney()
         localStorage.setItem("Money", JSON.stringify(Currency))
     } else {
         isLockedOut = true
-        console.log("You are clicking too fast! Please wait 5 minutes.")
-
+        console.log("You are clicking too fast you prick, stop cheating! Please wait 5 minutes lol")
         setTimeout(() => {
             isLockedOut = false
             console.log("You can click again!")
         }, lockoutTime)
     }
 })
-
 
 setInterval(() => {
     clickCount = 0
@@ -130,9 +121,6 @@ resetButton.addEventListener('click', () => {
 })
 
 
-
-
-
 //Update Buttons
 const updateMoney = () =>{
     currency.textContent = Currency.toString();
@@ -146,7 +134,6 @@ const updateTickButton = () =>{
 
 
 //Updates for when user opens page
-
 if (autoTickRunning == true) {
     autoTicker()
 }
