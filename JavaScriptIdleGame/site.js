@@ -132,13 +132,13 @@ resetButton.addEventListener('click', () => {
 
 //Update Buttons
 const updateMoney = () =>{
-    currency.textContent = Currency.toString();
+    currency.textContent = Currency.toLocaleString();
 }
 const updateAddButton = () =>{
-    addAmountButton.innerHTML = "Increase Click Amount " + "<br> <br>" + "Cost: " + addAmountPrice.toString()
+    addAmountButton.innerHTML = "Increase Click Amount " + "<br> <br>" + "Cost: " + addAmountPrice.toLocaleString()
 }
 const updateTickButton = () =>{
-    autoTickButt.innerHTML = "Increase Auto-Tick Speed " + "<br> <br>" + "Cost: " + addAutoPrice.toString()
+    autoTickButt.innerHTML = "Increase Auto-Tick Speed " + "<br> <br>" + "Cost: " + addAutoPrice.toLocaleString()
 }
 
 
